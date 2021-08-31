@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>To Do List</title>
+    <style media="screen">
+      @import url('https://fonts.googleapis.com/css2?family=Lato&family=Montserrat&family=Roboto&display=swap');
+      .container {
+        border: 2px solid black;
+        border-radius: 20px;
+        width: 400px;
+        margin: 20px auto;
+        padding: 20px;
+        text-align: center;
+      }
+      h1, input, li, button {
+        font-family: 'Lato', sans-serif;
+        font-size: large;
+      }
+      h1 {
+        font-size: 200%;
+      }
+      #list {
+        width: 300px;
+        margin: 10px auto;
+      }
+      #list li {
+        border-bottom: 1px grey solid;
+        text-transform: capitalize;
+      }
+      #list li button{
+        margin: 0px 30px;
+      }
+      #toDo:focus {
+        background-color: lightblue;
+      }
+    </style>
+
+  </head>
+  <body>
+    <div class="container">
+      <h1>To Do List</h1>
+      <input type="text" id="toDo" value=" " onfocus="this.value=''" placeholder="Add an item!">
+      <input type="submit" id="submit" value="Submit">
+      <button type="button" id="clear">Clear List</button>
+    </div>
+    <ol id="list"></ol>
+
+    <script>
+      var toDo = document.getElementById("toDo");
+      var list = document.getElementById("list");
+
+      toDo.addEventListener("keyup", function(event) {
+        if (event.keyCode === 13) {
+          event.preventDefault();
+          document.getElementById('submit').click();
+        }
+      });
+
+      document.getElementById("submit").onclick = function(){
+          var toDoValue = toDo.value;
+          var newLi = document.createElement('li');
+          var newBtn = document.createElement("button");
+          newBtn.innerHTML = "&#10005;";
+          newLi.innerHTML= toDoValue;
+
+          newLi.appendChild(newBtn)
+          list.appendChild(newLi);
+
+          newBtn.onclick = function() {
+            list.removeChild(newLi);
+          };
+        toDo.value = '';
+      }
+
+
+      document.getElementById("clear").onclick = function() {
+        while (list.firstChild) {
+          list.removeChild(list.firstChild);
+        }
+      }
+
+
+
+
+    </script>
+
+  </body>
+</html>
