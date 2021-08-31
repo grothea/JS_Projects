@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Memory Game</title>
+    <style media="screen">
+      body {
+        margin: 20px;
+      }
+      .container {
+        width: 400px;
+        box-sizing: borderbox;
+        margin: 10px auto;
+        display: flex;
+        flex-wrap: wrap;
+      }
+      .squares {
+        width: 100px;
+        height: 100px;
+        background-color: green;
+        border: 1px solid black;
+        margin: 2px;
+      }
+      table {
+        border-collapse: collapse;
+      }
+      td {
+        width: 100px;
+        height: 100px;
+        background: no-repeat green;
+        background-size: 100px 100px;
+        border: 1px solid black;
+      }
+      p {
+        font-size: 100%:
+      }
+
+    </style>
+  </head>
+  <body>
+    <table>
+      <tr>
+        <td id="0"></td>
+        <td id="1"></td>
+        <td id="2"></td>
+      </tr>
+      <tr>
+        <td id="3"></td>
+        <td id="4"></td>
+        <td id="5"></td>
+      </tr>
+    </table>
+    <p id="message"></p>
+    <p>Score: <span id="scoreInput"></span></p>
+    <p>Failed Attempts: <span id="attemptsInput"></span></p>
+  </body>
+  <script>
+    let score = 0;
+    let failedAttempt = 0;
+    var guesses = 0;
+    var numMatches = 3;
+    var numTiles = numMatches*2;
+    var matchLocations = ['2', '1', '1', '2', '0', '0'];
+    var animal;
+
+    /*function generateMatchLocations(){
+      var locations;
+      for (var i = 0; i < numMatches; i++) {
+        do {
+          locations = generateMatch();
+        } while(collision(locations));
+        matchLocations = locations;
+        console.log(matchLocations);
+    }
+  }
+    function generateMatch(){
+      var newMatchLocations = [];
+      newMatchLocations.length = 6;
+      for (var i = 0; i < numMatches; i++) {
+        do{
+          var location1 = Math.floor(Math.random() * 6);
+          newMatchLocations[location1] = i;
+          var location2 = Math.floor(Math.random() * 6);
+          newMatchLocations[location2] = i;
+        } while(location1 === location2);
+      }console.log(newMatchLocations)
+      return newMatchLocations;
+    }
+    function collision(newMatchLocations) {
+        for (var j = 0; j < matchLocations.length; j++){
+          if (matchLocations[j] !== ""){
+            return true;
+          } else { return false;}
+        }
+      }*/
+
+
+      function tilesClick (){
+        var tiles = document.getElementsByTagName('td');
+        for (var i = 0; i < tiles.length; i++) {
+          tiles[i].onclick = showTiles;
+        }
+      };
+
+      function showTiles(eventObj){
+        var tile = eventObj.target;
+        var index = tile.id;
+        var name = matchLocations[index];
+        getAnimal(name);
+        bgimage = 'url(' + animal + '.jpeg)'
+        tile.style.backgroundImage = bgimage;
+        guesses = guesses + 1;
+        if (guesses === 2) {
+          match2 = animal;
+          tile2 = tile;
+          view.checkMatch(tile1, tile2);
+          guesses = 0;
+        } else {
+          match1 = animal;
+          tile1 = tile;
+        };
+    };
+    function getAnimal(name) {
+      if (name == 0) {
+        animal = 'monkey';
+      } else if (name == 1) {
+        animal = 'gator';
+      } else if (name == 2) {
+        animal = 'elephant';
+      };
+      return animal;
+    }
+
+
+
+
+    var view = {
+      checkMatch: function() {
+        var messagePara = document.getElementById('message')
+        if (match1 === match2) {
+          messagePara.innerHTML = 'Match!!!';
+          score = score + 1;
+          this.displayScore(score);
+        } else {
+          failedAttempt = failedAttempt + 1;
+          this.displayFailedAttempts(failedAttempt);
+          setTimeout(function() {tile1.style.backgroundImage = '';
+          tile2.style.backgroundImage = '';}, 1000);
+          messagePara.innerHTML = 'not a match';
+        }
+      },
+      displayScore: function(score) {
+        var scoreInput = document.getElementById('scoreInput');
+        scoreInput.innerHTML = score;
+      },
+      displayFailedAttempts: function(attempts) {
+        var attemptsInput = document.getElementById('attemptsInput');
+        attemptsInput.innerHTML = attempts;
+      }
+    }
+//window.onload = generateMatchLocations();
+window.onload = tilesClick();
+  </script>
+</html>
