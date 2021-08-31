@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Expense Tracker</title>
+    <style media="screen">
+      @import url('https://fonts.googleapis.com/css2?family=Lato&family=Montserrat&family=Roboto&display=swap');
+      body {
+        font-family: 'Lato', sans-serif;
+      }
+      h1, h3 {
+        text-align: center;
+      }
+      h3 {
+        color: green;
+      }
+      .container {
+        width: 80%;
+        margin: 20px auto;
+        text-align: center;
+        padding: 15px;
+        font-size: large;
+      }
+      input {
+        font-family: 'Lato', sans-serif;
+        padding: 2px;
+        font-size: 100%;
+      }
+      #name {
+        width: 70%;
+      }
+      #date, #amount {
+        width: 30%;
+        margin: 10px 20px 10px 0;
+      }
+      #submit {
+        background: green;
+        font-size: 120%;
+        border: 1px solid black;
+        color: white;
+        border-radius: 10px;
+        padding: 5px 10px;
+      }
+      table {
+        border-collapse: collapse;
+        width: 80%;
+        margin: 20px auto;
+      }
+      th, td {
+        text-align: left;
+        padding: 8px;
+        border: 1px solid lightgrey;
+      }
+      tr:nth-child(even) {background-color: #f2f2f2;}
+    </style>
+  </head>
+  <body>
+      <h1>Expense Tracker</h1>
+      <h3>Add A New Item:</h3>
+    <div class="container">
+      <label for="name">Name:</label>
+      <input type="text" id="name" placeholder="What was purchased"><br>
+      <label for="date">Date:</label>
+      <input type="date" id="date" placeholder="mm/dd/yyy">
+      <label for="amount">Amount:</label>
+      <input type="text" id="amount" placeholder="Amount"><br>
+      <input type="submit" id="submit" value="Submit">
+    </div>
+    <table id="table">
+      <tr>
+        <th width="30%">Name:</th>
+        <th width="30%">Date:</th>
+        <th width="30%">Amount:</th>
+        <th width="10%"></th>
+      </tr>
+    </table>
+
+    <script>
+      var table = document.getElementById('table');
+      var submitButton = document.getElementById('submit');
+
+     document.getElementById("amount").addEventListener("keyup", function(event){
+        if (event.keyCode === 13) {
+          event.preventDefault();
+          document.getElementById('submit').click();
+        }
+      })
+
+
+      submitButton.onclick = function() {
+        var name = document.getElementById('name');
+        var date = document.getElementById('date');
+        var amount = document.getElementById('amount');
+
+        var newRow = document.createElement('tr');
+        var newName = document.createElement('td');
+        newName.innerHTML = name.value;
+        var newDate = document.createElement('td');
+        newDate.innerHTML = date.value;
+        var newAmount = document.createElement('td');
+        newAmount.innerHTML = '$' + amount.value;
+        var newDelete = document.createElement('td');
+        var deleteButton = document.createElement('button')
+        deleteButton.innerHTML = "&#10005;";
+        newDelete.appendChild(deleteButton);
+        deleteButton.onclick = function(){
+          table.removeChild(newRow);
+        }
+        table.appendChild(newRow);
+        newRow.appendChild(newName);
+        newRow.appendChild(newDate);
+        newRow.appendChild(newAmount);
+        newRow.appendChild(newDelete);
+        name.value = '';
+        date.value = '';
+        amount.value = '';
+      }
+
+
+    </script>
+
+  </body>
+</html>

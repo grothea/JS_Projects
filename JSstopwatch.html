@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Stopwatch</title>
+    <style media="screen">
+      @import url('https://fonts.googleapis.com/css2?family=Nanum+Gothic&display=swap');
+      body {
+        background-color: #FAB516;
+        margin: 0;
+        padding: 20px;
+        font-family: 'Nanum Gothic', sans-serif;
+        color: white;
+        font-size: normal;
+      }
+      h1, h2, p {
+        font-size: 200%;
+        text-transform: uppercase;
+        text-align: center;
+      }
+      div {
+        text-align: center;
+      }
+      button {
+        font-size: 120%;
+        font-family: 'Nanum Gothic', sans-serif;
+        background-color: #FAB516;
+        color: white;
+        padding: 10px 30px;
+        margin: 10px;
+        border: 1px white solid;
+        border-radius: 5px;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Stopwatch</h1>
+    <h2>Vanilla Javascript Stopwatch</h2>
+    <p id='clock'><span id='minutes'>00</span>:<span id="seconds">00</span>:<span id='millSeconds'>00</span></p>
+    <div class="">
+      <button type="button" id="start">Start</button>
+      <button type="button" id="stop">Stop</button>
+      <button type="button" id="reset">Reset</button>
+    </div>
+    <script>
+      var millSeconds = document.getElementById('millSeconds');
+      var seconds = document.getElementById('seconds');
+      var minutes = document.getElementById('minutes');
+      var start = document.getElementById('start');
+      var stop = document.getElementById('stop');
+      var reset = document.getElementById('reset');
+      var mill = 00;
+      var sec = 00;
+      var min = 00;
+      var Interval;
+
+      start.onclick = function() {
+        clearInterval(Interval);
+        Interval = setInterval(startTimer, 10);
+      }
+      stop.onclick = function() {
+        clearInterval(Interval);
+      }
+      reset.onclick = function() {
+        clearInterval(Interval);
+        mill = "00";
+        sec = "00";
+        min = "00"
+        millSeconds.innerHTML = mill;
+        seconds.innerHTML = sec;
+        minutes.innerHTML = min;
+      }
+
+      function startTimer() {
+        mill++;
+        if (mill < 9) {
+          millSeconds.innerHTML = "0" + mill;
+        } if (mill > 9){
+          millSeconds.innerHTML = mill;
+        } if (mill > 99) {
+          sec++;
+          seconds.innerHTML = "0" + sec;
+          mill = 0;
+          millSeconds.innerHTML = "0" + 0;
+        } if (sec > 9) {
+          seconds.innerHTML = sec;
+        } if (sec > 59) {
+          min++;
+          minutes.innerHTML = "0" + min;
+          sec = 0;
+          seconds.innerHTML = "0" + 0;
+          mill = 0;
+          millSeconds.innerHTML = "0" + 0;
+        } if (min > 9) {
+          minutes.innerHTML = min;
+        }
+      }
+
+    </script>
+  </body>
+</html>
