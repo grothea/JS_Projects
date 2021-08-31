@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Note Taker</title>
+    <style media="screen">
+      @import url('https://fonts.googleapis.com/css2?family=Lato&family=Montserrat&family=Roboto&display=swap');
+      body {
+        margin: 0;
+        padding: 20px;
+        font-family: 'Lato', sans-serif;
+        text-align: center;
+        display: relative;
+      }
+      h3 {
+        color: green;
+      }
+
+      input {
+        ont-family: 'Lato', sans-serif;
+        margin: 5px 10px;
+      }
+      #submit {
+        background-color: green;
+        border: 1px solid black;
+        color: white;
+        padding: 5px 10px;
+        margin: 10px auto;
+        border-radius: 10px;
+      }
+      .noteArea {
+        width: 90%;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        box-sizing: border-box;
+      }
+      .noteArea div {
+        border: 1px solid gray;
+        border-radius: 10px;
+        padding: 15px;
+        margin: 20px;
+        width: 40%;
+        height: 150px;
+        overflow: hidden;
+      }
+      .noteArea p {
+        height: 1.2em;
+        overflow: hidden;
+        margin: 0 10px;
+      }
+      .noteArea button {
+        background-color: green;
+        border: 1px solid black;
+        color: white;
+        padding: 5px 10px;
+        margin: 15px auto;
+        border-radius: 10px;
+
+      }
+      #modalBg {
+        display: none;
+        position: fixed;
+        width: 100%;
+        height: 100%;
+        left: 0;
+        top:0;
+        overflow: auto;
+        background-color: rgba(0,0,0,0.5);
+        z-index: 1;
+      }
+      #modalContent {
+        position: fixed;
+        left: 25%;
+        top: 10%;
+        width: 50%;
+        height: auto;
+        background-color: white;
+        z-index: 2;
+        padding: 10px;
+        border-radius: 10px;
+      }
+      #modalContent span {
+        float: right;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Note Taker</h1>
+    <h3>Add A New Note:</h3>
+    <label for="note">Note:</label>
+    <textarea name="note" rows="2" cols="80" id="note" placeholder="Your note:"></textarea>
+    <br><input type="submit" id="submit" value="Add Note">
+    <div class="noteArea">
+    </div>
+
+
+    <div id="modalBg">
+      <div id="modalContent">
+        <span id="close">&times;</span>
+        <p id="modalP"></p>
+      </div>
+    </div>
+
+
+    <script>
+      var note;
+      var n = 1;
+
+      document.getElementById("submit").onclick = function() {
+        note = document.getElementById("note");
+        var modalDisplay = document.getElementById('modalBg');
+        var noteArea = document.getElementsByClassName('noteArea');
+        var newDiv = document.createElement('div');
+        var newH2 = document.createElement('h2');
+          newH2.innerHTML = 'Note ' + n + ':';
+        var newNote = document.createElement('p');
+          newNote.innerHTML = note.value;
+        var newButton = document.createElement('button');
+          newButton.innerHTML = 'View Details';
+
+          noteArea[0].appendChild(newDiv);
+          newDiv.appendChild(newH2);
+          newDiv.appendChild(newNote);
+          newDiv.appendChild(newButton);
+
+          newButton.onclick = function() {
+            var modalP = document.getElementById('modalP');
+            modalP.innerHTML = newNote.innerHTML;
+            modalDisplay.style.display = "block";
+             }
+            document.getElementById('close').onclick = function(){
+              modalDisplay.style.display = "none";
+            }
+
+        n = n + 1;
+        note.value = "";
+      }
+
+
+
+    </script>
+
+  </body>
+</html>
