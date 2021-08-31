@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Vowel Counter</title>
+    <style media="screen">
+      @import url('https://fonts.googleapis.com/css2?family=Lato&family=Montserrat&family=Roboto&display=swap');
+      body {
+        text-align: center;
+        margin: 20px;
+        font-family: 'Lato', sans-serif;
+      }
+      #input {
+        width: 70%;
+        margin: 10px auto;
+      }
+      #submit {
+        background-color: lightblue;
+        font-size: 100%;
+        border: 1px solid black;
+        border-radius: 5px;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Vowel Counter</h1>
+    <input type="text" id="input"><br>
+    <input type="submit" id="submit" value="Check">
+
+    <script>
+      var input = document.getElementById('input');
+
+      document.getElementById('submit').onclick = function(){
+        var vowel = 0;
+        for (i = 0; i < input.value.length; i++) {
+          if (input.value[i] === 'a' || input.value[i] === 'e' || input.value[i] === 'i' || input.value[i] === 'o' || input.value[i] === 'u'|| input.value[i] === 'A' || input.value[i] === 'E' || input.value[i] === 'I' || input.value[i] === 'O' || input.value[i] === 'U') {
+          vowel++;
+        }
+      } alert('There are ' + vowel + ' vowels.')
+    }
+
+    </script>
+  </body>
+</html>

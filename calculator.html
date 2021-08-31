@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>calculator</title>
+    <style media="screen">
+      body {
+        background-color: black;
+        font-size: large;
+        margin: 0;
+        padding: 20px;
+      }
+      #body {
+        background-color: white;
+        border: 1px solid black;
+        width: 320px;
+        height: 450px;
+        border-radius: 10px;
+        margin: 20px auto;
+        position: relative;
+        box-sizing: border-box;
+      }
+      .actions {
+        width: 320px;
+        position: relative;
+      }
+      .numbers {
+        position: relative;
+        margin: 5px;
+      }
+      button {
+        font-size: 150%;
+        margin: 5px;
+        border: 1px solid black;
+        border-radius: 5px;
+        width: 65px;
+        height: 65px;
+        background-color: lightgrey;
+      }
+      .numbers {
+        display: flex;
+        flex-wrap: wrap;
+        width: 250px;
+      }
+
+      #equals {
+        background-color: orange;
+        position: absolute;
+        right: 5px;
+        bottom: 10px;
+        height: 290px;
+        width: 65px;
+      }
+      #answer {
+        border: 1px black solid;
+        border-radius: 5px;
+        width: 275px;
+        height: 40px;
+        margin: 5px;
+        padding: 5px 15px;
+        font-size: 175%;
+        text-align: right;
+      }
+    </style>
+  </head>
+  <body>
+    <div id=body>
+    <p id="answer">0</p>
+    <div class="actions">
+      <button id="addition">&#43;</button>
+      <button id="subtraction">&#45;</button>
+      <button id="multiply">&times;</button>
+      <button id="divide">&divide;</button>
+    </div>
+<button id="equals">&#61;</button>
+    <div class="numbers">
+      <button id="seven">7</button>
+      <button id="eight">8</button>
+      <button id="nine">9</button>
+      <button id="four">4</button>
+      <button id="five">5</button>
+      <button id="six">6</button>
+      <button id="one">1</button>
+      <button id="two">2</button>
+      <button id="three">3</button>
+      <button id="zero">0</button>
+      <button id="dot">&#46;</button>
+      <button id="clear">C</button>
+    </div>
+    </div>
+    <script>
+      const additionButton = document.getElementById('addition');
+      const subtractionButton = document.getElementById('subtraction');
+      const multiplyButton = document.getElementById('multiply');
+      const divideButton = document.getElementById('divide');
+
+      const zeroButton = document.getElementById('zero');
+      const oneButton = document.getElementById('one');
+      const twoButton = document.getElementById('two');
+      const threeButton = document.getElementById('three');
+      const fourButton = document.getElementById('four');
+      const fiveButton = document.getElementById('five');
+      const sixButton = document.getElementById('six');
+      const sevenButton = document.getElementById('seven');
+      const eightButton = document.getElementById('eight');
+      const nineButton = document.getElementById('nine');
+
+      const dotButton = document.getElementById('dot');
+      const clearButton = document.getElementById('clear');
+
+      const equalsButton = document.getElementById('equals');
+      const answerBar = document.getElementById('answer');
+
+      var number = '';
+      clearButton.onclick = function() {
+        number = '';
+        answerBar.innerHTML = number;
+      }
+
+    function getNumber() {
+      oneButton.onclick = function() {
+        number = number + '1';
+        answerBar.innerHTML =  parseFloat(number);
+      }
+      twoButton.onclick = function() {
+        number = number + '2';
+        answerBar.innerHTML = parseFloat(number);
+      }
+      threeButton.onclick = function() {
+        number = number + '3';
+        answerBar.innerHTML = parseFloat(number);
+      }
+      fourButton.onclick = function() {
+        number = number + '4';
+        answerBar.innerHTML = parseFloat(number);
+      }
+      fiveButton.onclick = function() {
+        number = number + '5';
+        answerBar.innerHTML = parseFloat(number);
+      }
+      sixButton.onclick = function() {
+        number = number + '6';
+        answerBar.innerHTML = parseFloat(number);
+      }
+      sevenButton.onclick = function() {
+        number = number + '7';
+        answerBar.innerHTML = parseFloat(number);
+      }
+      eightButton.onclick = function() {
+        number = number + '8';
+        answerBar.innerHTML = parseFloat(number);
+      }
+      nineButton.onclick = function() {
+        number = number + '9';
+        answerBar.innerHTML = parseFloat(number);
+      }
+      zeroButton.onclick = function() {
+        number = number + '0';
+        answerBar.innerHTML = parseFloat(number);
+      }
+      dotButton.onclick = function() {
+        number = number + '.';
+        answerBar.innerHTML = number;
+      }
+      return number;
+    }
+
+    numberA = getNumber;
+
+    function getAnswer (numberA, numberB) {
+      additionButton.onclick = addition();
+      subtractionButton.onclick = subtraction();
+      multiplyButton.onclick = multiplication();
+      divideButton.onclick = division();
+
+      function addition() {
+      answer = numberA + numberB;
+    }
+      function subtraction() {
+      answer = numberA - numberB;
+    }
+      function multiplication() {
+      answer = numberA * numberB;
+    }
+      function division() {
+      answer = numberA / numberB;
+    }
+
+  }
+
+    equalsButton.onclick = function(answer) {
+      answerBar.innerHTML = answer;
+      }
+
+
+    </script>
+
+
+  </body>
+</html>

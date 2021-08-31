@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Clock</title>
+    <style media="screen">
+      @import url('https://fonts.googleapis.com/css2?family=Unica+One&display=swap');
+      body {
+        background-color: black;
+        margin: 0;
+        padding: 20px;
+      }
+      div {
+        text-align: center;
+        font-size: 400%;
+        font-family: 'Unica One', cursive;
+        color: #16C6FA;
+        margin-top: 20px;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="showDate">
+
+    </div>
+    <div id="myClock" class="clock" onload="showTime()">
+    </div>
+    <script>
+      function showTime() {
+        var date = new Date();
+        var h = date.getHours();
+        var m = date.getMinutes();
+        var s = date.getSeconds();
+        var day = date.getDay();
+        var date = date.getDate();
+        var session = "AM";
+        if(h == 0){
+          h = 12;
+        }
+
+        if(h > 12){
+          h = h - 12;
+          session = "PM";
+        }
+
+        if (h <= 9) {
+          h = "0" + h;
+        }
+        if (m <= 9) {
+          m = "0" + m;
+        }
+        if (s <= 9) {
+          s = "0" + s;
+        }
+        var time = h + ":" + m + ":" + s + " " + session;
+        var weekDay;
+        var dayOfWeek = function(day) {
+          if (day === 0) {
+            day = 'Sunday';
+          } if (day === 1) {
+            day = 'Monday';
+          } if (day === 2) {
+            day = 'Tuesday';
+          } if (day === 3) {
+            day = 'Wednesday';
+          } if (day === 4) {
+            day = 'Thursday';
+          } if (day === 5) {
+            day = 'Friday';
+          } if (day === 6) {
+            day  = 'Saturday';
+          }
+          return day;
+        }
+        document.getElementById('showDate').innerHTML = dayOfWeek(day) + ', the ' + date + "th";
+        document.getElementById('myClock').innerHTML = time;
+        document.getElementById('myClock').innerHTML = time;
+        setTimeout(showTime, 1000);
+
+      }
+      showTime();
+
+
+    </script>
+
+  </body>
+</html>
