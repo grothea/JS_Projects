@@ -10,4 +10,5 @@ Project #3: Expense Tracker
 Project #4: Memory Game
 
 Project #5: Calculator
+
 Project #6: Clock
